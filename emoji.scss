@@ -12,7 +12,8 @@
   vertical-align: middle;
 }
 
-{% for emo in site.collections.emoji.files %}
+{% assign mycol = site.collections | where: "label", "emoji" | last  %}
+{% for emo in mycol.files | sort: "path" %}
   {% comment %} This needs to match index.html. {% endcomment %}
   {% assign filename = emo.path | replace:'/_emoji/','' %}
   {% assign name = filename | replace:'.png','' | replace:'+','--' %}
